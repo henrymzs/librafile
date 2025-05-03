@@ -1,11 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Catálogo de Livros</title>
+    <link rel="stylesheet" href="./src/styles/index.css">
 </head>
 <body>
-    
+
+    <header id="header-content">
+        <div class="header-logo">
+            <img src="./src/assets/book-logo.svg" alt="Icone de um Livro">
+            <h1>Catálogo de Livros</h1>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="main-controls">
+            <button id="addBtn">Adicionar Novo Livro</button>
+            <input type="text" id="searchInput" onkeyup="searchBooks()" placeholder="Pesquisar Por Título">
+            <button id="searchBtn">Buscar</button>
+        </section>
+
+        <section id="bookModal" class="modal">
+            <div class="modal-content">
+                <span id="modal-close">&times;</span>
+                <h2>Adicionar Novo Livro</h2>
+                <form id="bookForm">
+                    <input type="text" id="bookTitle" placeholder="Título" required>
+                    <input type="text" id="bookAuthor" placeholder="Autor" required>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+        </section>
+        
+        <section id="editModal" class="modal">
+            <div class="modal-content">
+                <span id="edit-close">&times;</span>
+                <form id="editForm">
+                    <h2>Editar Livro</h2>
+                    <input type="text" id="editTitle" placeholder="Título">
+                    <input type="text" id="editAuthor" placeholder="Autor">
+                    <button id="saveChanges">Salvar Alterações</button>
+                    </form>
+            </div>
+        </section>
+        <div id="booksList" class="books-grid"></div>
+    </main>
+
+    <footer id="footer">
+        © 2025 Catálogo de Livros. Todos os direitos reservados.
+    </footer>
+
+    <script src="./src/scripts/index.js"></script>
 </body>
 </html>
