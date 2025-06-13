@@ -1,9 +1,8 @@
 import LivroRepository from "../repositories/LivroRepository.js";
+import { validateId } from "../utils/utils.js";
 
 async function getLivroService(id) {
-    if (isNaN(id)) {
-        throw new Error("ID inválido");
-    }
+    id = validateId(id);
     const livro = await LivroRepository.getLivroRepository(id);
     return livro ? livro : null;
 }
@@ -16,9 +15,7 @@ async function postLivroService(livro) {
 }
 
 async function updateLivroService(id, livro) {
-    if (isNaN(id)) {
-        throw new Error("ID inválido");
-    }
+    id = validateId(id);
     if (!livro || Object.keys(livro).length === 0) {
         throw new Error("Nenhum dado válido para atualização");
     }
@@ -30,9 +27,7 @@ async function updateLivroService(id, livro) {
 }
 
 async function deleteLivroService(id) {
-    if (isNaN(id)) {
-        throw new Error("ID inválido");
-    }
+    id = validateId(id);
     const success = await LivroRepository.deleteLivroRepository(id);
     if (!success) {
         throw new Error("Livro não encontrado");

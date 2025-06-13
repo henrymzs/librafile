@@ -20,7 +20,7 @@ async function getLivroController(req, res) {
 
 async function getLivrosController(req, res) {
     try {
-        const livros = await LivroRepository.getRepositoryLivros();
+        const livros = await LivroRepository.getLivrosRepository();
         res.json(livros);
     } catch (error) {
         res.status(500).json({
