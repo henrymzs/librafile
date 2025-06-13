@@ -1,7 +1,9 @@
-const express = require('express');
+import express from "express";
+import LivroRouter from "./routers/routes.js";
 
 const app = express();
 app.use(express.json());
+app.use('/livros', LivroRouter)
 
 const PORT = 3000;
 

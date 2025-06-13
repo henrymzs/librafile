@@ -1,0 +1,58 @@
+[
+  {
+    "titulo": "Livro A",
+    "autor": "Autor A",
+    "anoPublicacao": 2020,
+    "codigo": 1,
+    "disponibilidade": true
+  },
+  {
+    "titulo": "Livro B",
+    "autor": "Autor B",
+    "anoPublicacao": 2018,
+    "codigo": 2,
+    "disponibilidade": false
+  },
+  {
+    "titulo": "Livro C",
+    "autor": "Autor C",
+    "anoPublicacao": 2021,
+    "codigo": 3,
+    "disponibilidade": true
+  },
+  {
+    "titulo": "Livro Teste",
+    "autor": "Autor Testado",
+    "anoPublicacao": 2021,
+    "codigo": 4,
+    "disponibilidade": true
+  },
+  {
+    "titulo": "Livro Teste2",
+    "autor": "Autor Testado2",
+    "anoPublicacao": 2021,
+    "codigo": 5,
+    "disponibilidade": true
+  },
+  {
+    "titulo": "Livro Fantasia",
+    "autor": "Autor Fantasiado",
+    "anoPublicacao": 2021,
+    "codigo": 6,
+    "disponibilidade": false
+  },
+  {
+    "titulo": "Livro Historia",
+    "autor": "Autor Historiado",
+    "anoPublicacao": 2021,
+    "codigo": 7,
+    "disponibilidade": false
+  },
+  {
+    "titulo": "Livro Quimica",
+    "autor": "Autor Quimico",
+    "anoPublicacao": 2021,
+    "codigo": 8,
+    "disponibilidade": false
+  }
+]
