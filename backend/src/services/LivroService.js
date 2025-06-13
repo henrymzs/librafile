@@ -4,7 +4,7 @@ async function getLivroService(id) {
     if (isNaN(id)) {
         throw new Error("ID inválido");
     }
-    const livro = await LivroRepository.getRepositoryLivro(id);
+    const livro = await LivroRepository.getLivroRepository(id);
     return livro ? livro : null;
 }
 
