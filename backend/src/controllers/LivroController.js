@@ -1,16 +1,14 @@
 import LivroRepository from "../repositories/LivroRepository.js";
+import LivroService from "../services/LivroService.js";
 
-async function getLivro(req, res) {
+async function getLivroController(req, res) {
     try {
         const id = Number(req.params.id); 
-        if (isNaN(id)) {
-            return res.status(400).json({ error: "ID inválido." });
-        }
-        const livro = await LivroRepository.getLivro(id);
+        const livro = await LivroService.getLivroService(id);
         if (livro) {
             res.json(livro);
         } else {
-            res.status(404).json({ error: 'Livro não encontrado.' }); 
+            res.status(404).json({ error: 'Livro não encontrado.' });
         }
     } catch (error) {
         res.status(500).json({
@@ -20,9 +18,9 @@ async function getLivro(req, res) {
     }
 }
 
-async function getLivros(req, res) {
+async function getLivrosController(req, res) {
     try {
-        const livros = await LivroRepository.getLivros();
+        const livros = await LivroRepository.getRepositoryLivros();
         res.json(livros);
     } catch (error) {
         res.status(500).json({
@@ -32,65 +30,41 @@ async function getLivros(req, res) {
     }
 }
 
-async function postLivro(req, res, next) {
+async function postLivroController(req, res, next) {
     try {
-        if (!req.body.titulo || !req.body.autor || !req.body.anoPublicacao) {
-            return res.status(400).json({ error: 'Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.' })
-        }
         const livro = req.body;
-        const result = await LivroRepository.addLivro(livro);
-        if (result) {
-            res.status(201).json(result);
-        } else {
-            res.status(400).json({ error: 'Erro ao adicionar o livro. Verifique os dados enviados.'});
-        }
+        const result = await LivroService.postLivroService(livro);
+        res.status(201).json(result);
     } catch (error) {
-        res.status(500).json({
-            error: 'Erro interno do servidor',
-            message: error.message
-        });
+        res.status(400).json({ error: error.message});
     }
 }
 
-async function patchLivro(req, res) {
+async function patchLivroController(req, res) {
     try {
-        const id = Number(req.params.id);
-        if (isNaN(id)) {
-            return res.status(400).json({ error: 'ID inválido' });
-        }
-        const livro = req.body;
-        const result = await LivroRepository.updateLivro(id, livro);
-        if (result) {
-            res.json(result);
-        } else {
-            res.status(404).json({ error: "Livro não encontrado." });
-        }
+      const id = Number(req.params.id);
+      const livro = req.body;
+      const result = await LivroService.updateLivroService(id, livro);
+      res.json(result);
     } catch (error) {
-        res.status(500).json({ error: "Erro interno do servidor." });
+        res.status(400).json({ error: message });
     }
 }
 
-async function deleteLivro(req, res) {
+async function deleteLivroController(req, res) {
     try {
         const id = Number(req.params.id);
-        if (isNaN(id)) {
-            return res.status(400).json({ error: 'ID inválido' });
-        }
-        const success = await LivroRepository.deleteLivro(id);
-        if (success) {
-            res.status(200).json({ message: "Livro removido com sucesso." });
-        } else {
-            res.status(404).json({ error: "Livro não encontrado." });
-        }
+        const success = await LivroService.deleteLivroService(id);
+        res.status(200).json({ message: "Livro removido com sucesso." });
     } catch (error) {
-        res.status(500).json({ error: "Erro interno do servidor." });
+        res.status(400).json({ error: 'Livro não foi encontrado ou não existe.' });
     }
 }
 
 export default {
-    getLivro,
-    getLivros,
-    postLivro,
-    patchLivro,
-    deleteLivro
+    getLivroController,
+    getLivrosController,
+    postLivroController,
+    patchLivroController,
+    deleteLivroController
 }
