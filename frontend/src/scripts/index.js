@@ -14,6 +14,7 @@ closeEditModal.addEventListener('click', () => {
     editModal.style.display = 'none';
     document.getElementById('editForm').dataset.bookId = ''; 
 });
+document.getElementById('searchInput').addEventListener('keyup', searchBooks);
 
 function createBookElement(book) {
     const bookItem = document.createElement('div');
