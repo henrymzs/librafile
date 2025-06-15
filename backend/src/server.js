@@ -1,8 +1,12 @@
 import express from "express";
 import LivroRouter from "./routers/routes.js";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: '*'
+}));
 app.use('/livros', LivroRouter)
 
 const PORT = 3000;
