@@ -54,7 +54,7 @@ async function patchLivroController(req, res) {
 async function deleteLivroController(req, res) {
     try {
         const id = Number(req.params.id);
-        const success = await LivroService.deleteLivroService(id);
+        await LivroService.deleteLivroService(id);
         res.status(200).json({ message: "Livro removido com sucesso." });
     } catch (error) {
         res.status(400).json({ error: 'Livro não foi encontrado ou não existe.' });
