@@ -1,13 +1,18 @@
 import Livros from '../models/Livros.js';
+import livros from '../../livros.json' with { type: "json" };;
 
-const livros = [];
-
+export const livroRepositories = {
+    async getLivroRepository(id) {
+        return livros.find(livro => livro.codigo === id);
+    }
+};
+/** 
 async function getLivroRepository(id) {
     return new Promise((resolve, reject) => {
         return resolve(livros.find(l => l.codigo === id));
     })
 }
-
+*/
 async function getLivrosRepository() {
     return new Promise((resolve, reject) => {
         return resolve(livros);
@@ -58,7 +63,7 @@ async function deleteLivroRepository(id) {
 
 
 export default {
-    getLivroRepository,
+    
     getLivrosRepository,
     postLivroRepository,
     updateLivroRepository,
