@@ -1,9 +1,25 @@
 import LivroRepository from "../repositories/LivroRepository.js";
-import LivroService from "../services/LivroService.js";
+import LivroService, { livroService } from "../services/LivroService.js";
 
+export const livroController = {
+    async getLivros(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const livro = await livroService.getLivros(id);
+            if (!livro) {
+                res.status(404).json({ error: error.message });
+            }
+            res.json(livro);
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+}
+
+/**
 async function getLivroController(req, res) {
     try {
-        const id = Number(req.params.id); 
+        const id = Number(req.params.id);
         const livro = await LivroService.getLivroService(id);
         if (livro) {
             res.json(livro);
@@ -17,7 +33,7 @@ async function getLivroController(req, res) {
         });
     }
 }
-
+ */
 async function getLivrosController(req, res) {
     try {
         const livros = await LivroRepository.getLivrosRepository();
@@ -30,22 +46,22 @@ async function getLivrosController(req, res) {
     }
 }
 
-async function postLivroController(req, res, next) {
+async function postLivroController(req, res) {
     try {
         const livro = req.body;
         const result = await LivroService.postLivroService(livro);
         res.status(201).json(result);
     } catch (error) {
-        res.status(400).json({ error: error.message});
+        res.status(400).json({ error: error.message });
     }
 }
 
 async function patchLivroController(req, res) {
     try {
-      const id = Number(req.params.id);
-      const livro = req.body;
-      const result = await LivroService.updateLivroService(id, livro);
-      res.json(result);
+        const id = Number(req.params.id);
+        const livro = req.body;
+        const result = await LivroService.updateLivroService(id, livro);
+        res.json(result);
     } catch (error) {
         res.status(400).json({ error: message });
     }
@@ -62,7 +78,6 @@ async function deleteLivroController(req, res) {
 }
 
 export default {
-    getLivroController,
     getLivrosController,
     postLivroController,
     patchLivroController,
