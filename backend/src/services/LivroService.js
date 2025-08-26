@@ -1,12 +1,25 @@
-import LivroRepository from "../repositories/LivroRepository.js";
+import LivroRepository, { livroRepositories } from "../repositories/LivroRepository.js";
 import { validateId } from "../utils/utils.js";
 
+export const livroService = {
+    async getLivros(id) {
+        if (!id || isNaN(id)) {
+            throw new Error('ID inválido');
+        }
+        const livro = await livroRepositories.getLivroRepository(id);
+        if (!livro) {
+            throw new Error('Livro não encontrado');
+        }
+        return livro;
+    }
+}
+/** 
 async function getLivroService(id) {
     id = validateId(id);
     const livro = await LivroRepository.getLivroRepository(id);
     return livro ? livro : null;
 }
-
+*/
 async function postLivroService(livro) {
     if (!livro.titulo || !livro.autor || !livro.anoPublicacao) {
         throw new Error("Dados do livro incompletos. Título, autor e ano são obrigatórios.");
@@ -36,7 +49,6 @@ async function deleteLivroService(id) {
 }
 
 export default { 
-    getLivroService,
     postLivroService,
     updateLivroService,
     deleteLivroService
