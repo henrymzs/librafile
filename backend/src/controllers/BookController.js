@@ -1,5 +1,5 @@
-import { bookRepository } from "../repositories/LivroRepository.js";
-import { bookService } from "../services/LivroService.js";
+import { bookRepository } from "../repositories/BookRepository.js";
+import { bookService } from "../services/BookService.js";
 
 export const bookController = {
     async searchAllBooks(req, res) {

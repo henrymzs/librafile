@@ -1,4 +1,4 @@
-import { bookRepository } from "../repositories/LivroRepository.js";
+import { bookRepository } from "../repositories/BookRepository.js";
 import { validateId } from "../utils/utils.js";
 
 export const bookService = {

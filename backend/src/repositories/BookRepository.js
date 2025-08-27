@@ -1,13 +1,13 @@
-import Livros from '../models/Livros.js';
-import livros from '../../livros.json' with { type: "json" };;
+import Book from '../models/Book.js';
+import books from '../../Books.json' with { type: "json" };
 
 export const bookRepository = {
     async findById(id) {
-        return livros.find(livro => livro.codigo === id);
+        return books.find(book => book.codigo === id);
     },
 
     async findAllBooks() {
-      return livros;  
+      return books;  
     },
 };
 /** 

@@ -1,4 +1,4 @@
-export default class Livros {
+export default class Book {
     static nextId = 0;
 
     constructor(titulo, autor, anoPublicacao, disponibilidade) {
