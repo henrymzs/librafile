@@ -1,5 +1,10 @@
 import Book from '../models/Book.js';
-import books from '../../Books.json' with { type: "json" };
+import { writeFileSync } from 'fs';
+import path from 'path';
+
+const books = [];
+
+const booksPath = path.resolve("./Bookss.json");
 
 export const bookRepository = {
     async findById(id) {
@@ -7,8 +12,16 @@ export const bookRepository = {
     },
 
     async findAllBooks() {
-      return books;  
+        return books;  
     },
+
+    async save({ titulo, autor, anoPublicacao }) {   
+        const newBook = new Book(titulo, autor, anoPublicacao, true);        
+        books.push(newBook);
+        writeFileSync(booksPath, JSON.stringify(books, null, 2));
+
+        return newBook;
+    }
 };
 /** 
 async function getLivroRepository(id) {
