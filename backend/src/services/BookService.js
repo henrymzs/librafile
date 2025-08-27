@@ -11,6 +11,13 @@ export const bookService = {
             throw new Error('Livro não encontrado');
         }
         return livro;
+    },
+
+    async createBook(book) {                       
+        if (!book.titulo || !book.autor || !book.anoPublicacao) {
+            throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
+        }
+        return await bookRepository.save(book);
     }
 }
 /** 
