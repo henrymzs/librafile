@@ -1,10 +1,14 @@
 import Livros from '../models/Livros.js';
 import livros from '../../livros.json' with { type: "json" };;
 
-export const livroRepositories = {
-    async getLivroRepository(id) {
+export const bookRepository = {
+    async findById(id) {
         return livros.find(livro => livro.codigo === id);
-    }
+    },
+
+    async findAllBooks() {
+      return livros;  
+    },
 };
 /** 
 async function getLivroRepository(id) {
@@ -12,7 +16,7 @@ async function getLivroRepository(id) {
         return resolve(livros.find(l => l.codigo === id));
     })
 }
-*/
+
 async function getLivrosRepository() {
     return new Promise((resolve, reject) => {
         return resolve(livros);
@@ -69,3 +73,4 @@ export default {
     updateLivroRepository,
     deleteLivroRepository
 }
+*/
