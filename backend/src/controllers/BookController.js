@@ -23,6 +23,19 @@ export const bookController = {
             return res.status(400).json({ error: error.message });
         }
     },
+
+    async createBook(req, res) {
+        try {
+            const response = req.body;            
+            const book = await bookService.createBook(response);
+            if (!book) {
+                return res.status(404).json({ error: error.message });
+            }
+            return res.status(201).json(book);
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    }
 }
 
 /**
