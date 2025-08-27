@@ -1,11 +1,20 @@
-import LivroRepository from "../repositories/LivroRepository.js";
-import LivroService, { livroService } from "../services/LivroService.js";
+import { bookRepository } from "../repositories/LivroRepository.js";
+import { bookService } from "../services/LivroService.js";
 
-export const livroController = {
-    async getLivros(req, res) {
+export const bookController = {
+    async searchAllBooks(req, res) {
+        try {
+            const livros = await bookRepository.findAllBooks();
+            res.json(livros);
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+
+    async getBook(req, res) {
         try {
             const id = Number(req.params.id);
-            const livro = await livroService.getLivros(id);
+            const livro = await bookService.getBookById(id);
             if (!livro) {
                 res.status(404).json({ error: error.message });
             }
@@ -33,7 +42,7 @@ async function getLivroController(req, res) {
         });
     }
 }
- */
+
 async function getLivrosController(req, res) {
     try {
         const livros = await LivroRepository.getLivrosRepository();
@@ -77,9 +86,4 @@ async function deleteLivroController(req, res) {
     }
 }
 
-export default {
-    getLivrosController,
-    postLivroController,
-    patchLivroController,
-    deleteLivroController
-}
+ */
