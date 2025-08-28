@@ -26,12 +26,12 @@ export const bookController = {
 
     async createBook(req, res) {
         try {
-            const response = req.body;            
+            const response = req.body;                        
             const book = await bookService.createBook(response);
             if (!book) {
                 return res.status(404).json({ error: error.message });
             }
-            return res.status(201).json(book);
+            return res.status(201).json({message:'Livro Adicionado com sucesso!', book});
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
