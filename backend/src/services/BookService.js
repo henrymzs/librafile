@@ -13,12 +13,42 @@ export const bookService = {
         return livro;
     },
 
-    async createBook(book) {                       
-        if (!book.titulo || !book.autor || !book.anoPublicacao) {
+    async createBook(newBook) {               
+        if (!newBook.titulo || !newBook.autor || !newBook.anoPublicacao) {
             throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
         }
-        return await bookRepository.save(book);
-    }
+
+        if (typeof newBook.titulo !== 'string') {
+            throw new Error('Título do livro não pode ser número e nem caractere especial.');
+        }
+
+        if (typeof newBook.autor !== 'string') {
+            throw new Error('Autor do livro não pode ser número e nem caractere especial.');
+        }
+
+        if (newBook.titulo === newBook.autor) {
+            throw new Error('Titulo e autor não podem ser iguais.');
+        }
+
+        const allBooks = await bookRepository.findAllBooks();
+
+        const exists = allBooks.some(
+            (bookTemp) =>   bookTemp.titulo.toLowerCase() === newBook.titulo.toLowerCase() &&
+                            book.autorTemp.toLowerCase() === newBook.autor.toLowerCase()
+        );
+        if (exists) {
+            throw new Error('Já existe um livro com esse título e autor.');
+        }
+        const newBookFormate = {
+            ...newBook,
+            anoPublicacao: Number(newBook.anoPublicacao)
+        };
+
+        if (isNaN(newBookFormate.anoPublicacao)) {
+            throw new Error('Ano de Publicação inválido');
+        }
+        return await bookRepository.save(newBookFormate);
+    },
 }
 /** 
 async function getLivroService(id) {
