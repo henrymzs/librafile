@@ -2,8 +2,7 @@ import Book from '../models/Book.js';
 import { writeFileSync } from 'fs';
 import path from 'path';
 
-const books = [];
-
+let books = [];
 const booksPath = path.resolve("./Bookss.json");
 
 export const bookRepository = {
