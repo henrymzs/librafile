@@ -5,7 +5,17 @@ export const bookController = {
     async searchAllBooks(req, res) {
         try {
             const livros = await bookRepository.findAllBooks();
-            res.json(livros);
+            return res.json(livros);
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+
+    async getAvailableBooks(req, res) {
+        try {
+            const booksAvailable = req.params.disponibilidade.toLowerCase();
+            const books = await bookService.availableBooks(booksAvailable);
+            return res.json(books);
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
@@ -18,7 +28,7 @@ export const bookController = {
             if (!livro) {
                 res.status(404).json({ error: error.message });
             }
-            res.json(livro);
+            return res.json(livro);
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
