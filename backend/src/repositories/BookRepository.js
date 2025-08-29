@@ -14,6 +14,11 @@ export const bookRepository = {
         return books;  
     },
 
+    async availabilityBooks(booksAvailable) {
+        const allBooks = await this.findAllBooks();
+        return allBooks.filter(book => String(book.disponibilidade) === booksAvailable);
+    },
+
     async save({ titulo, autor, anoPublicacao, disponibilidade }) {   
         const newBook = new Book(titulo, autor, anoPublicacao, disponibilidade);        
         books.push(newBook);
