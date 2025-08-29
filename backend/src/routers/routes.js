@@ -2,10 +2,10 @@ import express from "express";
 import { bookController } from "../controllers/BookController.js"
 const router = express.Router();
 
-router.get('/', bookController.searchAllBooks);
-router.get('/:id', bookController.getBook);
-router.post('/', bookController.createBook);
-
+router.get('/books/', bookController.searchAllBooks);
+router.get('/book/:id', bookController.getBook);
+router.post('/book/', bookController.createBook);
+router.get('/books/filter/:disponibilidade', bookController.getAvailableBooks);
 /*
 router.post('/', LivroController.postLivroController);
 router.patch('/:id', LivroController.patchLivroController);
