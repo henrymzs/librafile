@@ -12,7 +12,18 @@ export const bookService = {
         }
         return livro;
     },
-    
+
+    async availableBooks(booksAvailable) {
+        if (booksAvailable !== 'true' && booksAvailable !== 'false') {
+            throw new Error('Disponibilidade deve ser "true" ou "false"');
+        }
+        const books = await bookRepository.availabilityBooks(booksAvailable);
+        if (!books || books.length === 0) {
+            throw new Error('Nenhum livro econtrado.');
+        }
+        return books;
+    },
+
     async createBook(newBook) {               
         if (!newBook.titulo || !newBook.autor || !newBook.anoPublicacao) {
             throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
