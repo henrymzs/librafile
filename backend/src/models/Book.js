@@ -1,5 +1,5 @@
 export default class Book {
-    static nextId = 0;
+    static nextId = 1;
 
     constructor(titulo, autor, anoPublicacao, disponibilidade) {
         this.codigo = Book.nextId++;
