@@ -12,7 +12,7 @@ export const bookService = {
         }
         return livro;
     },
-
+    
     async createBook(newBook) {               
         if (!newBook.titulo || !newBook.autor || !newBook.anoPublicacao) {
             throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
@@ -26,10 +26,14 @@ export const bookService = {
             throw new Error('Autor do livro não pode ser número e nem caractere especial.');
         }
 
+        if (typeof newBook.disponibilidade !== 'boolean') {
+            throw new Error('Disponibilidade do livro só pode ser "Disponivel" ou "Indisponivel".');
+        }
+
         if (newBook.titulo === newBook.autor) {
             throw new Error('Titulo e autor não podem ser iguais.');
         }
-
+        
         const allBooks = await bookRepository.findAllBooks();
 
         const exists = allBooks.some(
