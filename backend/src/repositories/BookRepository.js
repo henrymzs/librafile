@@ -14,8 +14,8 @@ export const bookRepository = {
         return books;  
     },
 
-    async save({ titulo, autor, anoPublicacao }) {   
-        const newBook = new Book(titulo, autor, anoPublicacao, true);        
+    async save({ titulo, autor, anoPublicacao, disponibilidade }) {   
+        const newBook = new Book(titulo, autor, anoPublicacao, disponibilidade);        
         books.push(newBook);
         writeFileSync(booksPath, JSON.stringify(books, null, 2));
 
