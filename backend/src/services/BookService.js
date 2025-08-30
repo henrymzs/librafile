@@ -13,6 +13,17 @@ export const bookService = {
         return livro;
     },
 
+    async deleteBook(id) {
+        if (!id || isNaN(id)) {
+            throw new Error('ID inválido');
+        }
+        const book = await bookRepository.delete(id);
+        if (!book) {
+            throw new Error('Livro não encontrado');
+        }
+        return book;
+    },
+
     async availableBooks(booksAvailable) {
         if (booksAvailable !== 'true' && booksAvailable !== 'false') {
             throw new Error('Disponibilidade deve ser "true" ou "false"');
