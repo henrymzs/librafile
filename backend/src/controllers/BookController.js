@@ -11,6 +11,16 @@ export const bookController = {
         }
     },
 
+    async deleteBook(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const book = await bookService.deleteBook(id);
+            return res.status(200).json({ message: `Livro com ID ${id} removido com sucesso!`, book });
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+
     async getAvailableBooks(req, res) {
         try {
             const booksAvailable = req.params.disponibilidade.toLowerCase();
@@ -25,9 +35,6 @@ export const bookController = {
         try {
             const id = Number(req.params.id);
             const livro = await bookService.getBookById(id);
-            if (!livro) {
-                res.status(404).json({ error: error.message });
-            }
             return res.json(livro);
         } catch (error) {
             return res.status(400).json({ error: error.message });
@@ -38,9 +45,6 @@ export const bookController = {
         try {
             const response = req.body;                        
             const book = await bookService.createBook(response);
-            if (!book) {
-                return res.status(404).json({ error: error.message });
-            }
             return res.status(201).json({message:'Livro Adicionado com sucesso!', book});
         } catch (error) {
             return res.status(400).json({ error: error.message });
