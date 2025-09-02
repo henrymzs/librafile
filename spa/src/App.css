@@ -37,3 +37,10 @@
   max-width: 300px;
 }
 
+@media (min-width: 1200px) {
+  .cards-books {
+    display: flex;
+    justify-content: center;
+  }
+
+}

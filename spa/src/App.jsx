@@ -3,7 +3,7 @@ import Card from './components/card/Card.jsx';
 import Options from './components/options/Options.jsx';
 
 function App() {
-  
+
   return (
     <>
       <header className='header'>
@@ -14,10 +14,12 @@ function App() {
         <p>Gerencie seu acervo de livros de forma simples eficiente</p>
       </header>
 
+      <div className='cards-books'>
+        <Card name={'Total de Livros'} valueBook={10} image={"../../public/book-card.png"} acessibility={'Imagem de um livro aberto'} />
+        <Card variant='disponivel' name={'Disponíveis'} valueBook={20} image={"../../public/check-mark.png"} acessibility={'Imagem de um check'} />
+        <Card variant='indisponivel' name={'Indisponíveis'} valueBook={30} image={"../../public/unavailable.png"} acessibility={'Imagem de sinal de bloqueio'} />
+      </div>
 
-      <Card name={'Total de Livros'} valueBook={10} image={"../../public/book-card.png"} acessibility={'Imagem de um livro aberto'} />
-      <Card variant='disponivel' name={'Disponíveis'} valueBook={20} image={"../../public/check-mark.png"} acessibility={'Imagem de um check'} />
-      <Card variant='indisponivel' name={'Indisponíveis'} valueBook={30} image={"../../public/unavailable.png"} acessibility={'Imagem de sinal de bloqueio'} />
 
       <Options />
     </>

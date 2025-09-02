@@ -1,78 +1,79 @@
 .switch-options {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin: 12px;
-    background-color: rgb(242, 245, 244);
-    border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  background-color: rgb(242, 245, 244);
+  border-radius: 8px;
 }
 
 .options {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 
 .options button {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: rgb(242, 245, 244);
-    font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(242, 245, 244);
+  font-size: 16px;
 }
 
 .options button:hover {
-    background-color: #d4edda;
+  background-color: #d4edda;
 }
 
 .option-content {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .form-add {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.form-add input{
-    padding: 10px 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-    
+.form-add input {
+  width: 90%;
+  margin: 8px;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 5px;
+
 }
 
 .form-add button {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: rgb(6, 163, 111);
-    font-size: 16px;
-    color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  background-color: rgb(6, 163, 111);
+  font-size: 16px;
+  color: #fff;
 }
 
 .input-search {
-    padding: 10px 20px;
-    border: 1px solid black;
-    border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .option-search button {
-    margin: 5px;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: rgb(6, 163, 111);
-    font-size: 16px;
-    color: #fff;
+  margin: 5px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(6, 163, 111);
+  font-size: 16px;
+  color: #fff;
 }
 
 .option-search button:hover {
-    background-color: rgb(3, 122, 82);
+  background-color: rgb(3, 122, 82);
 }
 
 .card-apresentation {
@@ -86,7 +87,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
@@ -118,14 +119,14 @@
 }
 
 .excluir {
-    margin: 5px;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #721c24;
-    font-size: 16px;
-    color: #fff;
+  margin: 5px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #721c24;
+  font-size: 16px;
+  color: #fff;
 }
 
 .mensagem-sucesso {
@@ -137,3 +138,144 @@
   font-weight: bold;
 }
 
+.acervo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px;
+}
+
+.acervo-info span {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 4px;
+}
+
+.acervo-info span+span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.acervo-info img {
+  width: 40px;
+}
+
+@media (min-width: 1200px) {
+  .option-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .switch-options {
+    justify-content: space-around;
+  }
+
+  .options {
+    gap: 0px;
+  }
+
+  .options button {
+    width: 100%;
+    padding: 8px 230px;
+    justify-content: space-between;
+  }
+
+  .option-content p {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .acervo-info {
+    margin: 12px;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    height: 300px;
+  }
+
+  .acervo-info span {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 4px;
+  }
+
+  .acervo-info span+span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .acervo-info img {
+    width: 80px;
+  }
+
+  .card-apresentation {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .book-card {
+    width: 200px;
+  }
+
+  .form-add {
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-add h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .form-inputs input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+
+
+  .form-add button {
+    padding: 12px 40px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-add button:hover {
+    background-color: #0056b3;
+  }
+
+
+  .mensagem-sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+  }
+
+}

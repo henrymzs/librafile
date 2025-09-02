@@ -35,7 +35,7 @@ function Options() {
             setDisponibilidade("");
         } catch (error) {
             console.error("Erro ao salvar livro:", error);
-            setMensagemSucesso(""); 
+            setMensagemSucesso("");
         }
     }
 
@@ -76,7 +76,11 @@ function Options() {
             <div className="option-content">
                 {activeOption === "acervo" && (
                     books.length === 0 ? (
-                        <p>Nenhum livro encontrado</p>
+                        <div className="acervo-info">
+                            <img src="../../../public/open-book.png" alt="Imagem de um livro aberto" />
+                            <span>Nenhum livro encontrado</span>
+                            <span>Comece adicionando livros</span>
+                        </div>
                     ) : (
                         <div className="card-apresentation">
                             {books.map((book) => (
@@ -100,30 +104,33 @@ function Options() {
                 {activeOption === "adicionar" && (
                     <form className="form-add" onSubmit={handleSubmit}>
                         <h3>Adicione Livros</h3>
-                        <input
-                            type="text"
-                            placeholder="Título do livro"
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Autor"
-                            value={autor}
-                            onChange={(e) => setAutor(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Ano Publicação"
-                            value={anoPublicacao}
-                            onChange={(e) => setAnoPublicacao(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Disponibilidade (true/false)"
-                            value={disponibilidade}
-                            onChange={(e) => setDisponibilidade(e.target.value)}
-                        />
+                        <div className="form-inputs">
+                            <input
+                                type="text"
+                                placeholder="Título do livro"
+                                value={titulo}
+                                onChange={(e) => setTitulo(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Autor"
+                                value={autor}
+                                onChange={(e) => setAutor(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Ano Publicação"
+                                value={anoPublicacao}
+                                onChange={(e) => setAnoPublicacao(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Disponibilidade (true/false)"
+                                value={disponibilidade}
+                                onChange={(e) => setDisponibilidade(e.target.value)}
+                            />
+                        </div>
+
                         <button type="submit">Salvar</button>
                         {mensagemSucesso && (
                             <p className="mensagem-sucesso">{mensagemSucesso}</p>
