@@ -1,29 +1,157 @@
-import './App.css';
-import Card from './components/card/Card.jsx';
-import Options from './components/options/Options.jsx';
+import { useState } from 'react';
+import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2 } from 'lucide-react';
+import BookForm from './component/BookForm'
+import BookSearch from './component/BookSearch'
+import StatsCard from './component/StatsCard';
+import BookCard from './component/BookCard';
+import { useBooks } from './hooks/useBooks';
+import './app.css'
 
 function App() {
+    const [activeTab, setActiveTab] = useState('acervo');
+    const { books, stats, filter, setFilter, removeBook, loading, error } = useBooks();
 
-  return (
-    <>
-      <header className='header'>
-        <div className='logo-text'>
-          <img className='image-logo' src="../public/open-book.png" alt="Livro Aberto" />
-          <h1>Sistema de Biblioteca</h1>
+    const tabs = [
+        { id: 'acervo', label: 'Acervo', icon: <BookOpen size={18} /> },
+        { id: 'adicionar', label: 'Adicionar', icon: <Plus size={18} /> },
+        { id: 'buscar', label: 'Buscar', icon: <Search size={18} /> }
+    ];
+
+    return (
+        <div className="dashboard">
+            <header className="header">
+                <div className="header-content">
+                    <div className="logo-section">
+                        <BookOpen size={32} className="logo-icon" />
+                        <h1>Sistema de Biblioteca</h1>
+                    </div>
+                    <p className="header-subtitle">Gerencie seu acervo de livros de forma simples e eficiente</p>
+                </div>
+            </header>
+
+            <section className="stats-section">
+                <StatsCard
+                    icon={<BookOpen size={24} />}
+                    title="Total de Livros"
+                    value={stats.total}
+                    color="blue"
+                />
+                <StatsCard
+                    icon={<Check size={24} />}
+                    title="Disponíveis"
+                    value={stats.disponiveis}
+                    color="green"
+                />
+                <StatsCard
+                    icon={<Ban size={24}/>}
+                    title="Emprestados"
+                    value={stats.emprestados}
+                    color="yellow"
+                />
+            </section>
+
+            <nav className="tabs-navigation">
+                {tabs.map(tab => (
+                    <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+                    >
+                        {tab.icon}
+                        {tab.label}
+                    </button>
+                ))}
+            </nav>
+
+            <main className="main-content">
+                {activeTab === 'acervo' && (
+                    <div className="acervo-section">
+                        <div className="controls-bar">
+                            <div className="filters">
+                                <Filter size={18} />
+                                <span>Filtros:</span>
+                                <button
+                                    onClick={() => setFilter('todos')}
+                                    className={`filter-btn ${filter === 'todos' ? 'active' : ''}`}
+                                >
+                                    Todos
+                                </button>
+                                <button
+                                    onClick={() => setFilter('disponiveis')}
+                                    className={`filter-btn ${filter === 'disponiveis' ? 'active' : ''}`}
+                                >
+                                    Apenas Disponíveis
+                                </button>
+                                <button
+                                    onClick={() => setFilter('emprestados')}
+                                    className={`filter-btn ${filter === 'emprestados' ? 'active' : ''}`}
+                                >
+                                    Apenas Emprestados
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Exibição dos livros */}
+                        <div className="books-content">
+                            {loading && (
+                                <div className="loading-state">
+                                    <Loader2 size={32} className="loading-icon" />
+                                    <p>Carregando livros...</p>
+                                </div>
+                            )}
+
+                            {error && (
+                                <div className="error-state">
+                                    <AlertCircle size={32} className="error-icon" />
+                                    <p>{error}</p>
+                                </div>
+                            )}
+
+                            {!loading && !error && books.length === 0 && (
+                                <div className="empty-state">
+                                    <BookOpen size={48} className="empty-icon" />
+                                    <h3>Nenhum livro encontrado</h3>
+                                    <p>
+                                        {filter === 'todos' 
+                                            ? 'Não há livros cadastrados no sistema.' 
+                                            : `Não há livros ${filter === 'disponiveis' ? 'disponíveis' : 'emprestados'} no momento.`}
+                                    </p>
+                                </div>
+                            )}
+
+                            {!loading && !error && books.length > 0 && (
+                                <div className="books-grid">
+                                    {books.map(book => (
+                                        <BookCard 
+                                            key={book.codigo} 
+                                            book={book} 
+                                            onDelete={removeBook}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'adicionar' && (
+                    <div className="form-section">
+                        <h2>Adicionar Novo Livro</h2>
+                        <p>Preencha as informações abaixo para adicionar um livro ao acervo</p>
+                        <BookForm />
+                    </div>
+                )}
+
+                {activeTab === 'buscar' && (
+                    <div className="search-section">
+                        <h2>Buscar Livros</h2>
+                        <p>Encontre livros específicos por código ou outros critérios</p>
+                        <BookSearch />
+                    </div>
+                )}
+            </main>
         </div>
-        <p>Gerencie seu acervo de livros de forma simples eficiente</p>
-      </header>
-
-      <div className='cards-books'>
-        <Card name={'Total de Livros'} valueBook={10} image={"../../public/book-card.png"} acessibility={'Imagem de um livro aberto'} />
-        <Card variant='disponivel' name={'Disponíveis'} valueBook={20} image={"../../public/check-mark.png"} acessibility={'Imagem de um check'} />
-        <Card variant='indisponivel' name={'Indisponíveis'} valueBook={30} image={"../../public/unavailable.png"} acessibility={'Imagem de sinal de bloqueio'} />
-      </div>
-
-
-      <Options />
-    </>
-  )
+    );
 }
 
-export default App
+export default App;
