@@ -18,12 +18,12 @@ function App() {
     ];
 
     return (
-        <div className="dashboard">
+        <div className="container">
             <header className="header">
                 <div className="header-content">
-                    <div className="logo-section">
-                        <BookOpen size={32} className="logo-icon" />
-                        <h1>Sistema de Biblioteca</h1>
+                    <div className="header-logo_section">
+                        <BookOpen size={32} className="header-logo_icon" />
+                        <h1 className='header-title'>Sistema de Biblioteca</h1>
                     </div>
                     <p className="header-subtitle">Gerencie seu acervo de livros de forma simples e eficiente</p>
                 </div>
