@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2, BookCopy } from 'lucide-react';
+import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2, BookCopy, AlertCircle } from 'lucide-react';
 import BookForm from './components/BookForm'
 import BookSearch from './components/BookSearch'
 import StatsCard from './components/StatsCard';
@@ -43,7 +43,7 @@ function App() {
                     color="green"
                 />
                 <StatsCard
-                    icon={<Ban size={24}/>}
+                    icon={<Ban size={24} />}
                     title="Emprestados"
                     value={stats.emprestados}
                     color="yellow"
@@ -111,8 +111,8 @@ function App() {
                                     <BookOpen size={48} className="empty-icon" />
                                     <h3>Nenhum livro encontrado</h3>
                                     <p>
-                                        {filter === 'todos' 
-                                            ? 'Não há livros cadastrados no sistema.' 
+                                        {filter === 'todos'
+                                            ? 'Não há livros cadastrados no sistema.'
                                             : `Não há livros ${filter === 'disponiveis' ? 'disponíveis' : 'emprestados'} no momento.`}
                                     </p>
                                 </div>
@@ -121,9 +121,9 @@ function App() {
                             {!loading && !error && books.length > 0 && (
                                 <div className="books-grid">
                                     {books.map(book => (
-                                        <BookCard 
-                                            key={book.codigo} 
-                                            book={book} 
+                                        <BookCard
+                                            key={book.codigo}
+                                            book={book}
                                             onDelete={removeBook}
                                         />
                                     ))}

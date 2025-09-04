@@ -124,6 +124,7 @@
 .stats-value.yellow {
     color: #d97706;
 }
+
 /*StatsCard*/
 
 .tabs-navigation {
@@ -281,6 +282,7 @@
 .delete-btn:hover {
     background: var(--color-err-hover);
 }
+
 /*BookCard*/
 
 /*EmptyState*/
@@ -306,6 +308,7 @@
     margin: 0;
     color: var(--color-text);
 }
+
 /*EmptyState*/
 
 .form-section,
@@ -384,7 +387,7 @@
     flex: 1;
 }
 
-.form-selection{
+.form-selection {
     margin-top: 24px;
     border-radius: 5px;
     padding: 8px;
@@ -412,6 +415,15 @@
 .input-search {
     flex: 2;
 }
+
+.loading-state,
+.error-state {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    gap: 12px;
+}
+
 
 @media (max-width: 768px) {
     .controls-bar {
