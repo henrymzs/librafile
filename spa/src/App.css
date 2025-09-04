@@ -1,7 +1,18 @@
-.dashboard {
+:root {
+    --color-background: #f8fafc;
+    --color-white: #fff;
+    --color-text: #64748b;
+    --color-button: #16A34A;
+    --color-button-hover: #029902;
+    --color-err: #ef4444;
+    --color-err-hover: #dc2626;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
     min-height: 100vh;
-    background: #f8fafc;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--color-background);
+    font-family: var(--font-family);
 }
 
 .header {
@@ -14,7 +25,7 @@
     text-align: center;
 }
 
-.logo-section {
+.header-logo_section {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,18 +33,18 @@
     margin-bottom: 8px;
 }
 
-.logo-icon {
-    color: #0ea5e9;
+.header-logo_icon {
+    color: var(--color-button);
 }
 
-.header h1 {
+.header-title {
     margin: 0;
     color: #1e293b;
 }
 
 .header-subtitle {
     margin: 0;
-    color: #64748b;
+    color: var(--tex);
 }
 
 .stats-section {
@@ -47,7 +58,7 @@
 
 /*StatsCard*/
 .stats-card {
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -92,8 +103,8 @@
 }
 
 .stats-title {
-    color: #64748b;
-    font-size: 0.875rem;
+    color: var(--color-text);
+    font-size: 0.8rem;
     margin-bottom: 4px;
 }
 
@@ -110,19 +121,17 @@
     color: #16a34a;
 }
 
-.stats-value.red {
-    color: #d90d06;
+.stats-value.yellow {
+    color: #d97706;
 }
-
 /*StatsCard*/
 
 .tabs-navigation {
     max-width: 1200px;
     margin: 0 auto 2rem;
-    padding: 0 2rem;
     display: flex;
     gap: 8px;
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
     padding: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -132,24 +141,24 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 20px;
+    padding: 12px 32px;
     border: none;
     background: transparent;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #64748b;
+    color: var(--color-text);
     font-weight: 500;
 }
 
 .tab-button:hover {
     background: #f1f5f9;
-    color: #334155;
+    color: var(--color-text);
 }
 
 .tab-button.active {
-    background: #0ea5e9;
-    color: white;
+    background: var(--color-button);
+    color: var(--color-background);
 }
 
 .main-content {
@@ -159,15 +168,10 @@
 }
 
 .controls-bar {
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1rem;
     margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -175,33 +179,32 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
 }
 
 .filters span {
-    color: #64748b;
+    color: var(--color-text);
     font-weight: 500;
 }
 
 .filter-btn {
     padding: 8px 16px;
     border: 1px solid #e2e8f0;
-    background: white;
+    background: var(--color-white);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #64748b;
+    color: var(--color-text);
 }
 
 .filter-btn:hover {
-    border-color: #0ea5e9;
-    color: #0ea5e9;
+    border-color: var(--color-button);
+    color: var(--color-button);
 }
 
 .filter-btn.active {
-    background: #16a34a;
-    border-color: #16a34a;
-    color: white;
+    background: var(--color-button);
+    border-color: var(--color-button);
+    color: var(--color-white);
 }
 
 .books-grid {
@@ -212,7 +215,7 @@
 
 /*BookCard*/
 .book-card {
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -261,12 +264,12 @@
 .book-author,
 .book-year {
     margin: 8px 0;
-    color: #64748b;
+    color: var(--color-text);
 }
 
 .delete-btn {
-    background: #ef4444;
-    color: white;
+    background: var(--color-err);
+    color: var(--color-white);
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
@@ -276,7 +279,7 @@
 }
 
 .delete-btn:hover {
-    background: #dc2626;
+    background: var(--color-err-hover);
 }
 /*BookCard*/
 
@@ -284,13 +287,13 @@
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .empty-icon {
-    color: #cbd5e1;
+    color: var(--color-button);
     margin-bottom: 1rem;
 }
 
@@ -301,13 +304,13 @@
 
 .empty-state p {
     margin: 0;
-    color: #64748b;
+    color: var(--color-text);
 }
 /*EmptyState*/
 
 .form-section,
 .search-section {
-    background: white;
+    background: var(--color-white);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -332,13 +335,14 @@
     border-radius: 8px;
     font-weight: 500;
     padding: 12px 20px;
-    background-color: #0ea5e9;
-    color: white;
+    background-color: var(--color-button);
+    color: var(--color-white);
     cursor: pointer;
 }
 
-.form-add button:hover {
-    background-color: #049be0;
+.form-add button:hover,
+.search-input_group button:hover {
+    background-color: var(--color-button-hover);
 }
 
 .form-inputs {
@@ -383,14 +387,14 @@
 .form-selection{
     margin-top: 24px;
     border-radius: 5px;
-    padding: 12px;
+    padding: 8px;
 }
 
 .mensagem-erro,
 .error {
     display: flex;
-    color: #fff;
-    background-color: #995252;
+    color: var(--color-white);
+    background-color: var(--color-err);
     padding: 12px;
     border-radius: 5px;
 }
