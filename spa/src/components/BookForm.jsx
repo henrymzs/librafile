@@ -41,13 +41,13 @@ function BookForm() {
                     <select 
                         className="form-selection"
                         value={formData.disponibilidade}
-                        onChange={(e) => setDisponibilidade(e.target.value === "true")}
+                        onChange={(e) => setDisponibilidade(e.target.value)}
                         required
                         disabled={loading}
                     >
                         <option value="">Selecione disponibilidade</option>
                         <option value="true">Disponível</option>
-                        <option value="false">Indisponível</option>
+                        <option value="false">Emprestado</option>
                     </select>
 
                 </div>
