@@ -5,15 +5,12 @@
 }
 
 .header {
-    background: white;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 2rem 0;
+    padding: 1.4rem 0;
 }
 
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
     text-align: center;
 }
 
@@ -32,14 +29,11 @@
 .header h1 {
     margin: 0;
     color: #1e293b;
-    font-size: 2rem;
-    font-weight: 700;
 }
 
 .header-subtitle {
     margin: 0;
     color: #64748b;
-    font-size: 1.1rem;
 }
 
 .stats-section {
@@ -51,6 +45,7 @@
     gap: 1.5rem;
 }
 
+/*StatsCard*/
 .stats-card {
     background: white;
     border-radius: 12px;
@@ -119,11 +114,7 @@
     color: #d90d06;
 }
 
-.check-circle,
-.clock-circle {
-    font-size: 24px;
-    font-weight: bold;
-}
+/*StatsCard*/
 
 .tabs-navigation {
     max-width: 1200px;
@@ -141,7 +132,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 12px 20px;
     border: none;
     background: transparent;
     border-radius: 8px;
@@ -213,48 +204,13 @@
     color: white;
 }
 
-.sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.sort-controls span {
-    color: #64748b;
-    font-weight: 500;
-}
-
-.sort-select {
-    padding: 8px 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    background: white;
-    cursor: pointer;
-}
-
-.sort-order-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
-    border: 1px solid #e2e8f0;
-    background: white;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.sort-order-btn:hover {
-    border-color: #0ea5e9;
-    color: #0ea5e9;
-}
-
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
+/*BookCard*/
 .book-card {
     background: white;
     border-radius: 12px;
@@ -322,7 +278,9 @@
 .delete-btn:hover {
     background: #dc2626;
 }
+/*BookCard*/
 
+/*EmptyState*/
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -345,6 +303,7 @@
     margin: 0;
     color: #64748b;
 }
+/*EmptyState*/
 
 .form-section,
 .search-section {
@@ -352,7 +311,7 @@
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: left;
 }
 
 .form-section h2,
@@ -361,25 +320,93 @@
     color: #1e293b;
 }
 
-.form-section p,
-.search-section p {
-    margin: 0 0 2rem;
-    color: #64748b;
+.form-add {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.placeholder-form,
-.placeholder-search {
-    padding: 3rem;
-    background: #f8fafc;
+.form-add button,
+.search-input_group button {
+    border: none;
     border-radius: 8px;
-    border: 2px dashed #cbd5e1;
+    font-weight: 500;
+    padding: 12px 20px;
+    background-color: #0ea5e9;
+    color: white;
+    cursor: pointer;
 }
 
-.placeholder-form p,
-.placeholder-search p {
-    margin: 0;
-    color: #64748b;
-    font-size: 1.1rem;
+.form-add button:hover {
+    background-color: #049be0;
+}
+
+.form-inputs {
+    display: flex;
+    flex: 1;
+    gap: 18px;
+}
+
+.form-inputs input,
+.search-input_group input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+}
+
+.card-apresentation {
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-info {
+    font-size: 12px;
+}
+
+.form-inputs_left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.form-inputs_right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.form-selection{
+    margin-top: 24px;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+.mensagem-erro,
+.error {
+    display: flex;
+    color: #fff;
+    background-color: #995252;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.option-search {
+    gap: 8px;
+}
+
+.search-input_group {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+}
+
+.input-search {
+    flex: 2;
 }
 
 @media (max-width: 768px) {

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2 } from 'lucide-react';
-import BookForm from './component/BookForm'
-import BookSearch from './component/BookSearch'
-import StatsCard from './component/StatsCard';
-import BookCard from './component/BookCard';
+import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2, BookCopy } from 'lucide-react';
+import BookForm from './components/BookForm'
+import BookSearch from './components/BookSearch'
+import StatsCard from './components/StatsCard';
+import BookCard from './components/BookCard';
 import { useBooks } from './hooks/useBooks';
 import './app.css'
 
@@ -91,7 +91,6 @@ function App() {
                             </div>
                         </div>
 
-                        {/* Exibição dos livros */}
                         <div className="books-content">
                             {loading && (
                                 <div className="loading-state">
@@ -136,16 +135,14 @@ function App() {
 
                 {activeTab === 'adicionar' && (
                     <div className="form-section">
-                        <h2>Adicionar Novo Livro</h2>
-                        <p>Preencha as informações abaixo para adicionar um livro ao acervo</p>
+                        <h2><BookCopy /> Adicionar Novo Livro</h2>
                         <BookForm />
                     </div>
                 )}
 
                 {activeTab === 'buscar' && (
                     <div className="search-section">
-                        <h2>Buscar Livros</h2>
-                        <p>Encontre livros específicos por código ou outros critérios</p>
+                        <h2><Search /> Buscar Livros</h2>
                         <BookSearch />
                     </div>
                 )}
