@@ -4,7 +4,7 @@ function BookCard({ book, onDelete }) {
       <div className="book-header">
         <h3 className="book-title">{book.titulo}</h3>
         <span className={`status-badge ${book.disponibilidade ? 'available' : 'unavailable'}`}>
-          {book.disponibilidade ? 'Disponível' : 'Indisponivel'}
+          {book.disponibilidade ? 'Disponível' : 'Emprestado'}
         </span>
       </div>
       <p className="book-author"><strong>Autor:</strong> {book.autor}</p>
