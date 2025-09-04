@@ -22,7 +22,7 @@ export function useBookForm() {
         setLoading(true);
         setError(''); 
 
-        if (!titulo.trim() || !autor.trim() || !anoPublicacao || !disponibilidade) {
+        if (!titulo.trim() || !autor.trim() || !anoPublicacao || !disponibilidade === '') {
             setError('Por favor, preencha todos os campos');
             setLoading(false);
             return;
