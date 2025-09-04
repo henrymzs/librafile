@@ -6,7 +6,6 @@ export function useBookForm() {
     const [autor, setAutor] = useState('');
     const [anoPublicacao, setAnoPublicacao] = useState(''); 
     const [disponibilidade, setDisponibilidade] = useState('');
-    const [mensagemSucesso, setMensagemSucesso] = useState('');
     const [error, setError] = useState(''); 
     const [loading, setLoading] = useState(false); 
 
@@ -15,7 +14,6 @@ export function useBookForm() {
         setAutor('');
         setAnoPublicacao(''); 
         setDisponibilidade('');
-        setMensagemSucesso('');
         setError('');
     };
 
@@ -23,7 +21,6 @@ export function useBookForm() {
         e.preventDefault();
         setLoading(true);
         setError(''); 
-        setMensagemSucesso(''); 
 
         if (!titulo.trim() || !autor.trim() || !anoPublicacao || !disponibilidade) {
             setError('Por favor, preencha todos os campos');
@@ -39,8 +36,7 @@ export function useBookForm() {
         };
 
         try {
-            const result = await saveBook(livro);
-            setMensagemSucesso(`${result.message} Título: "${result.book.titulo}"`);
+            await saveBook(livro);
             resetForm();
         } catch (error) {
             console.error('Erro ao salvar livro:', error);
@@ -53,7 +49,6 @@ export function useBookForm() {
     return {
         formData: { titulo, autor, anoPublicacao, disponibilidade }, 
         setters: { setTitulo, setAutor, setAnoPublicacao, setDisponibilidade },
-        mensagemSucesso,
         error, 
         loading, 
         handleSubmit,
