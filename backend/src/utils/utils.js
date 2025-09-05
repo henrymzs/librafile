@@ -1,5 +1,5 @@
 export function validateId(id) {
-    if (isNaN(id)) {
+    if (!id || isNaN(id)) {
         throw new Error("ID inválido");
     }
     return id;
