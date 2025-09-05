@@ -7,9 +7,5 @@ router.get('/book/:id', bookController.getBook);
 router.post('/book/', bookController.createBook);
 router.get('/books/filter/:disponibilidade', bookController.getAvailableBooks);
 router.delete('/book/:id', bookController.deleteBook);
-/*
-router.post('/', LivroController.postLivroController);
-router.patch('/:id', LivroController.patchLivroController);
-router.delete('/:id', LivroController.deleteLivroController);
-*/
+
 export default router;
