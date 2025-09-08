@@ -4,7 +4,7 @@ import { bookService } from "../services/BookService.js";
 export const bookController = {
     async searchAllBooks(req, res) {
         try {
-            const books = await bookRepository.findAllBooks();
+            const books = await bookService.getAllBooks();
             return res.json(books);
         } catch (error) {
             return res.status(400).json({ error: error.message });
