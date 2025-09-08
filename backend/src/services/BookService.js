@@ -2,6 +2,15 @@ import { bookRepository } from "../repositories/BookRepository.js";
 import { validateId } from "../utils/utils.js";
 
 export const bookService = {
+    async getAllBooks() {
+        const books = await bookRepository.findAllBooks();
+        if (!books || books.length === 0) {
+            throw new Error('Nenhum livro cadastrado');
+        }
+        
+        return books;
+    },
+
     async getBookById(id) {
         validateId(id);
         /**
@@ -41,7 +50,7 @@ export const bookService = {
         return books;
     },
 
-    async createBook(newBook) {               
+    async createBook(newBook) {
         if (!newBook.titulo || !newBook.autor || !newBook.anoPublicacao) {
             throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
         }
@@ -61,12 +70,12 @@ export const bookService = {
         if (newBook.titulo.trim().toLowerCase() === newBook.autor.trim().toLowerCase()) {
             throw new Error('Titulo e autor não podem ser iguais.');
         }
-        
+
         const allBooks = await bookRepository.findAllBooks();
 
         const exists = allBooks.some(
-            (bookTemp) =>   bookTemp.titulo.toLowerCase() === newBook.titulo.toLowerCase() &&
-                            book.autorTemp.toLowerCase() === newBook.autor.toLowerCase()
+            (bookTemp) => bookTemp.titulo.toLowerCase() === newBook.titulo.toLowerCase() &&
+                book.autorTemp.toLowerCase() === newBook.autor.toLowerCase()
         );
         if (exists) {
             throw new Error('Já existe um livro com esse título e autor.');
