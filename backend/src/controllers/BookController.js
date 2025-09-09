@@ -1,11 +1,41 @@
-import { bookRepository } from "../repositories/BookRepository.js";
 import { bookService } from "../services/BookService.js";
 
 export const bookController = {
+
     async searchAllBooks(req, res) {
         try {
             const books = await bookService.getAllBooks();
-            return res.json(books);
+            return res.json({ message: 'Livro do acervo ', books});
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+
+    async getBook(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const book = await bookService.getBookById(id);
+            return res.json({ message: 'Livro Encontrado ', book});
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+
+    async getAvailableBooks(req, res) {
+        try {
+            const booksAvailable = req.params.availability.toLowerCase();
+            const books = await bookService.availableBooks(booksAvailable);
+            return res.json({ message: 'Livro Encontrado ', books});
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    },
+    
+    async createBook(req, res) {
+        try {
+            const response = req.body;
+            const book = await bookService.createBook(response);
+            return res.status(201).json({ message: 'Livro Adicionado com sucesso!', book });
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
@@ -20,34 +50,4 @@ export const bookController = {
             return res.status(400).json({ error: error.message });
         }
     },
-
-    async getAvailableBooks(req, res) {
-        try {
-            const booksAvailable = req.params.disponibilidade.toLowerCase();
-            const books = await bookService.availableBooks(booksAvailable);
-            return res.json(books);
-        } catch (error) {
-            return res.status(400).json({ error: error.message });
-        }
-    },
-
-    async getBook(req, res) {
-        try {
-            const id = Number(req.params.id);
-            const book = await bookService.getBookById(id);
-            return res.json(book);
-        } catch (error) {
-            return res.status(400).json({ error: error.message });
-        }
-    },
-
-    async createBook(req, res) {
-        try {
-            const response = req.body;                        
-            const book = await bookService.createBook(response);
-            return res.status(201).json({ message:'Livro Adicionado com sucesso!', book });
-        } catch (error) {
-            return res.status(400).json({ error: error.message });
-        }
-    }
 }
