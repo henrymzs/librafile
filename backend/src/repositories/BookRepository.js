@@ -1,39 +1,33 @@
 import Book from '../models/Book.js';
-import { writeFileSync } from 'fs';
-import path from 'path';
 
 let books = [];
-const booksPath = path.resolve("./Books.json");
 
 export const bookRepository = {
-    async findById(id) {
-        return books.find(book => book.codigo === id);
-    },
-
-    async delete(id) {
-        const bookToRemove = books.find(book => book.codigo === id);
-        if (!bookToRemove) {
-            return null;
-        }
-        books = books.filter(book => book.codigo !== id);
-        writeFileSync(booksPath, JSON.stringify(books, null, 2), 'utf-8');
-        return bookToRemove;
-    },
 
     async findAllBooks() {
         return books;
     },
 
-    async availabilityBooks(booksAvailable) {
-        const allBooks = await this.findAllBooks();
-        return allBooks.filter(book => String(book.disponibilidade) === booksAvailable);
+    async findById(id) {
+        return books.find(book => book.code === id);
     },
 
-    async save({ titulo, autor, anoPublicacao, disponibilidade }) {
-        const newBook = new Book(titulo, autor, anoPublicacao, disponibilidade);
-        books.push(newBook);
-        writeFileSync(booksPath, JSON.stringify(books, null, 2), 'utf-8');
+    async availabilityBooks(booksAvailable) {
+        const isAvailable = booksAvailable === 'true';
+        const allBooks = await this.findAllBooks();
+        return allBooks.filter(book => book.disponibilidade === isAvailable);
+    },
 
+    async save({ title, author, yearPublication, availability }) {
+        const newBook = new Book(title, author, yearPublication, availability);
+        books.push(newBook);
         return newBook;
-    }
+    },
+
+    async delete(id) {
+        const bookToRemove = books.find(book => book.codigo === id);
+        if (!bookToRemove) return null;
+        books = books.filter(book => book.codigo !== id);
+        return bookToRemove;
+    },
 };
