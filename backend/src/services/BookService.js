@@ -1,41 +1,24 @@
 import { bookRepository } from "../repositories/BookRepository.js";
-import { validateId } from "../utils/utils.js";
+import { validateId, getBookDefault } from "../utils/utils.js";
 
 export const bookService = {
     async getAllBooks() {
         const books = await bookRepository.findAllBooks();
-        if (!books || books.length === 0) {
-            throw new Error('Nenhum livro cadastrado');
-        }
-        
+        getBookDefault(books);
         return books;
     },
 
     async getBookById(id) {
         validateId(id);
-        /**
-        if (!id || isNaN(id)) {
-            throw new Error('ID inválido');
-        }
-        */
         const book = await bookRepository.findById(id);
-        if (!book) {
-            throw new Error('Livro não encontrado');
-        }
+        getBookDefault(book);
         return book;
     },
 
     async deleteBook(id) {
         validateId(id);
-        /**
-        if (!id || isNaN(id)) {
-            throw new Error('ID inválido');
-        }
-        */
         const book = await bookRepository.delete(id);
-        if (!book) {
-            throw new Error('Livro não encontrado');
-        }
+        getBookDefault(book);
         return book;
     },
 
@@ -44,48 +27,42 @@ export const bookService = {
             throw new Error('Disponibilidade deve ser "true" ou "false"');
         }
         const books = await bookRepository.availabilityBooks(booksAvailable);
-        if (!books || books.length === 0) {
-            throw new Error('Nenhum livro econtrado.');
-        }
+        getBookDefault(books);
         return books;
     },
 
     async createBook(newBook) {
-        if (!newBook.titulo || !newBook.autor || !newBook.anoPublicacao) {
+        if (!newBook.title || !newBook.author || !newBook.yearPublication) {
             throw new Error('Dados do livro incompletos. Título, autor e ano de publicação são obrigatórios.');
         }
 
-        if (typeof newBook.titulo !== 'string') {
+        if (typeof newBook.title !== 'string') {
             throw new Error('Título do livro não pode ser número e nem caractere especial.');
         }
 
-        if (typeof newBook.autor !== 'string') {
+        if (typeof newBook.author !== 'string') {
             throw new Error('Autor do livro não pode ser número e nem caractere especial.');
         }
 
-        if (typeof newBook.disponibilidade !== 'boolean') {
-            throw new Error('Disponibilidade do livro só pode ser "Disponivel" ou "Indisponivel".');
-        }
-
-        if (newBook.titulo.trim().toLowerCase() === newBook.autor.trim().toLowerCase()) {
-            throw new Error('Titulo e autor não podem ser iguais.');
+        if (typeof newBook.availability !== 'boolean') {
+            throw new Error('Disponibilidade do livro deve ser "true(Disponivel)" ou "false(Indisponivel)".');
         }
 
         const allBooks = await bookRepository.findAllBooks();
 
         const exists = allBooks.some(
-            (bookTemp) => bookTemp.titulo.toLowerCase() === newBook.titulo.toLowerCase() &&
-                book.autorTemp.toLowerCase() === newBook.autor.toLowerCase()
+            (bookTemp) =>   bookTemp.title.toLowerCase() === newBook.title.toLowerCase() &&
+                            bookTemp.author.toLowerCase() === newBook.author.toLowerCase()
         );
         if (exists) {
             throw new Error('Já existe um livro com esse título e autor.');
         }
         const newBookFormate = {
             ...newBook,
-            anoPublicacao: Number(newBook.anoPublicacao)
+            yearPublication: Number(newBook.yearPublication)
         };
 
-        if (isNaN(newBookFormate.anoPublicacao)) {
+        if (isNaN(newBookFormate.yearPublication)) {
             throw new Error('Ano de Publicação inválido');
         }
         return await bookRepository.save(newBookFormate);
