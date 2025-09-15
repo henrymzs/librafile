@@ -15,7 +15,7 @@ export const bookRepository = {
     async availabilityBooks(booksAvailable) {
         const isAvailable = booksAvailable === 'true';
         const allBooks = await this.findAllBooks();
-        return allBooks.filter(book => book.disponibilidade === isAvailable);
+        return allBooks.filter(book => book.availability === isAvailable);
     },
 
     async save({ title, author, yearPublication, availability }) {
@@ -25,9 +25,9 @@ export const bookRepository = {
     },
 
     async delete(id) {
-        const bookToRemove = books.find(book => book.codigo === id);
+        const bookToRemove = books.find(book => book.code === id);
         if (!bookToRemove) return null;
-        books = books.filter(book => book.codigo !== id);
+        books = books.filter(book => book.code !== id);
         return bookToRemove;
     },
 };
