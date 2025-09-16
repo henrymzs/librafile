@@ -52,13 +52,13 @@ function App() {
                 <StatsCard
                     icon={<Check size={24} />}
                     title="Disponíveis"
-                    value={stats.disponiveis}
+                    value={stats.available}
                     color="green"
                 />
                 <StatsCard
                     icon={<Ban size={24} />}
                     title="Emprestados"
-                    value={stats.emprestados}
+                    value={stats.unavailable}
                     color="yellow"
                 />
             </section>

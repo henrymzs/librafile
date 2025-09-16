@@ -52,15 +52,15 @@ export function useBooks() {
 
     const stats = {
         total: books.length,
-        disponiveis: books.filter(book => book.availability).length,
-        emprestados: books.filter(book => !book.availability).length
+        available: books.filter(book => book.availability).length,
+        unavailable: books.filter(book => !book.availability).length
     };
 
     const applyFilters = () => {
         let filtered = [...books];
-        if (filter === 'disponiveis') {
+        if (filter === 'available') {
             filtered = filtered.filter(book => book.availability);
-        } else if (filter === 'emprestados') {
+        } else if (filter === 'unavailable') {
             filtered = filtered.filter(book => !book.availability);
         }
         setFilteredBooks(filtered);
