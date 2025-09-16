@@ -1,28 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:3000';
 
-export async function getAllBooks() {
-    const response = await axios.get(`${API_BASE_URL}/books`);
-    return response.data;
-}
+export const getAllBooks = async () => {
+    const response = await axios.get(`${API_BASE_URL}/books/`);
+    return response.data || response.data || []; 
+};
 
-export async function getBookID(id) {
+export const getBookID = async (id) => {
     const response = await axios.get(`${API_BASE_URL}/book/${id}`);
-    return response.data;
-}
+    return response.data.book || response.data; 
+};
 
-export async function saveBook(bookData) {
-    const response = await axios.post(`${API_BASE_URL}/book`, bookData);
-    return response.data;
-}
+export const saveBook = async (bookData) => {
+    const response = await axios.post(`${API_BASE_URL}/book/`, bookData);
+    return response.data.book || response.data; 
+};
 
-export async function deleteBook(id) {
+export const deleteBook = async (id) => {
     const response = await axios.delete(`${API_BASE_URL}/book/${id}`);
-    return response.data;
-}
-
-
-
-
-
+    return response.data.book || response.data; 
+};

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2, BookCopy, AlertCircle } from 'lucide-react';
-import BookForm from './components/BookForm'
-import BookSearch from './components/BookSearch'
+import BookForm from './components/BookForm';
+import BookSearch from './components/BookSearch';
 import StatsCard from './components/StatsCard';
 import BookCard from './components/BookCard';
 import { useBooks } from './hooks/useBooks';
-import './app.css'
+import './app.css';
 
 function App() {
     const [activeTab, setActiveTab] = useState('acervo');
@@ -23,7 +23,7 @@ function App() {
                 <div className="header-content">
                     <div className="header-logo_section">
                         <BookOpen size={32} className="header-logo_icon" />
-                        <h1 className='header-title'>Sistema de Biblioteca</h1>
+                        <h1 className="header-title">Sistema de Biblioteca</h1>
                     </div>
                     <p className="header-subtitle">Gerencie seu acervo de livros de forma simples e eficiente</p>
                 </div>
@@ -122,7 +122,7 @@ function App() {
                                 <div className="books-grid">
                                     {books.map(book => (
                                         <BookCard
-                                            key={book.codigo}
+                                            key={book.code}  
                                             book={book}
                                             onDelete={removeBook}
                                         />
@@ -143,7 +143,7 @@ function App() {
                 {activeTab === 'buscar' && (
                     <div className="search-section">
                         <h2><Search /> Buscar Livros</h2>
-                        <BookSearch />
+                        <BookSearch onDelete={removeBook} />
                     </div>
                 )}
             </main>

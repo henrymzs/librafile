@@ -11,21 +11,28 @@ export function useBooks() {
     const loadBooks = async () => {
         try {
             setLoading(true);
-            const data = await getAllBooks();
-            setBooks(data);
+            const response = await getAllBooks();
+            const booksArray = response.books || response || [];
+            setBooks(booksArray);
             setError(null);
         } catch (err) {
             console.error('Erro ao carregar livros:', err);
             setError('Erro ao carregar livros');
+            setBooks([]); 
         } finally {
             setLoading(false);
         }
     };
 
     const removeBook = async (id) => {
+        console.log('Tentando remover livro com ID:', id); 
         try {
             await deleteBook(id);
-            setBooks(prevBooks => prevBooks.filter(book => book.codigo !== id));
+            setBooks(prevBooks => {
+                const newBooks = prevBooks.filter(book => book.code !== id);
+                console.log('Books após remoção:', newBooks);
+                return newBooks;
+            });
         } catch (err) {
             console.error('Erro ao excluir livro:', err);
             setError('Erro ao excluir livro');
@@ -34,16 +41,16 @@ export function useBooks() {
 
     const stats = {
         total: books.length,
-        disponiveis: books.filter(book => book.disponibilidade).length,
-        emprestados: books.filter(book => !book.disponibilidade).length
+        disponiveis: books.filter(book => book.availability).length,
+        emprestados: books.filter(book => !book.availability).length
     };
 
     const applyFilters = () => {
         let filtered = [...books];
         if (filter === 'disponiveis') {
-            filtered = filtered.filter(book => book.disponibilidade);
+            filtered = filtered.filter(book => book.availability);
         } else if (filter === 'emprestados') {
-            filtered = filtered.filter(book => !book.disponibilidade);
+            filtered = filtered.filter(book => !book.availability);
         }
         setFilteredBooks(filtered);
     };

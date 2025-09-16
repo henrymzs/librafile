@@ -6,11 +6,18 @@ export function useBookSearch() {
     const [searchResult, setSearchResult] = useState(null);
     const [searchError, setSearchError] = useState('');
 
-    const buscarLivro = async () => {
+    const getBook = async () => {
         if (!searchId.trim()) return;
 
+        const idNum = Number(searchId);
+        if (isNaN(idNum) || idNum <= 0) {
+            setSearchResult(null);
+            setSearchError('ID deve ser um número válido maior que zero');
+            return;
+        }
+
         try {
-            const livro = await getBookID(searchId);
+            const livro = await getBookID(idNum);
             setSearchResult(livro);
             setSearchError('');
         } catch (error) {
@@ -30,7 +37,7 @@ export function useBookSearch() {
         setSearchId,
         searchResult,
         searchError,
-        buscarLivro,
+        getBook: getBook,
         clearSearch
     };
 }

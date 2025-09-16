@@ -2,7 +2,7 @@ import { useBookForm } from "../hooks/useBookForm";
 
 function BookForm() {
     const { formData, setters, error, loading, handleSubmit } = useBookForm();
-    const { setTitulo, setAutor, setAnoPublicacao, setDisponibilidade } = setters;
+    const { setTitle, setAuthor, setYearPublication, setAvailability } = setters;
 
     return (
         <form className="form-add" onSubmit={handleSubmit}>
@@ -12,8 +12,8 @@ function BookForm() {
                     <input
                         type="text"
                         placeholder="Digite o título do livro"
-                        value={formData.titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
+                        value={formData.title}
+                        onChange={(e) => setTitle(e.target.value)}
                         required
                         disabled={loading}
                     />
@@ -21,8 +21,8 @@ function BookForm() {
                     <input
                         type="text"
                         placeholder="Digite o nome do autor"
-                        value={formData.autor}
-                        onChange={(e) => setAutor(e.target.value)}
+                        value={formData.author}
+                        onChange={(e) => setAuthor(e.target.value)}
                         required
                         disabled={loading}
                     />
@@ -33,15 +33,15 @@ function BookForm() {
                     <input
                         type="text"
                         placeholder="Digite o ano de publicação"
-                        value={formData.anoPublicacao}
-                        onChange={(e) => setAnoPublicacao(e.target.value)}
+                        value={formData.yearPublication}
+                        onChange={(e) => setYearPublication(e.target.value)}
                         required
                         disabled={loading}
                     />
                     <select 
                         className="form-selection"
-                        value={formData.disponibilidade}
-                        onChange={(e) => setDisponibilidade(e.target.value)}
+                        value={formData.availability}
+                        onChange={(e) => setAvailability(e.target.value)}
                         required
                         disabled={loading}
                     >

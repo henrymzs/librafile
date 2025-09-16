@@ -1,8 +1,8 @@
 import { useBookSearch } from "../hooks/useBookSearch";
 import BookCard from "./BookCard";
 
-function BookSearch() {
-    const { searchId, setSearchId, searchResult, searchError, buscarLivro } = useBookSearch();
+function BookSearch({ onDelete }) {
+    const { searchId, setSearchId, searchResult, searchError, getBook } = useBookSearch();
 
     return (
         <div className="option-search">
@@ -14,13 +14,13 @@ function BookSearch() {
                     value={searchId}
                     onChange={(e) => setSearchId(e.target.value)} 
                 />
-                <button onClick={buscarLivro}>Buscar</button>
+                <button onClick={getBook}>Buscar</button>
             </div>
             {searchError && <p className="error">{searchError}</p>}
 
             {searchResult && (
                 <div className="card-apresentation">
-                    <BookCard book={searchResult} showDeleteButton={false} />
+                    <BookCard book={searchResult} onDelete={onDelete} />
                 </div>
             )}
         </div>
