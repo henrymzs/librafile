@@ -6,6 +6,7 @@ import BookForm from './components/BookForm';
 import BookSearch from './components/BookSearch';
 import StatsCard from './components/StatsCard';
 import BookCard from './components/BookCard';
+import EmptyState from './components/EmptyState';
 import { useBooks } from './hooks/useBooks';
 import './app.css';
 
@@ -84,20 +85,20 @@ function App() {
                                 <Filter size={18} />
                                 <span>Filtros:</span>
                                 <button
-                                    onClick={() => setFilter('todos')}
-                                    className={`filter-btn ${filter === 'todos' ? 'active' : ''}`}
+                                    onClick={() => setFilter('total')}
+                                    className={`filter-btn ${filter === 'total' ? 'active' : ''}`}
                                 >
                                     Todos
                                 </button>
                                 <button
-                                    onClick={() => setFilter('disponiveis')}
-                                    className={`filter-btn ${filter === 'disponiveis' ? 'active' : ''}`}
+                                    onClick={() => setFilter('available')}
+                                    className={`filter-btn ${filter === 'available' ? 'active' : ''}`}
                                 >
                                     Apenas Disponíveis
                                 </button>
                                 <button
-                                    onClick={() => setFilter('emprestados')}
-                                    className={`filter-btn ${filter === 'emprestados' ? 'active' : ''}`}
+                                    onClick={() => setFilter('unavailable')}
+                                    className={`filter-btn ${filter === 'unavailable' ? 'active' : ''}`}
                                 >
                                     Apenas Emprestados
                                 </button>
@@ -120,15 +121,7 @@ function App() {
                             )}
 
                             {!loading && !error && books.length === 0 && (
-                                <div className="empty-state">
-                                    <BookOpen size={48} className="empty-icon" />
-                                    <h3>Nenhum livro encontrado</h3>
-                                    <p>
-                                        {filter === 'todos'
-                                            ? 'Não há livros cadastrados no sistema.'
-                                            : `Não há livros ${filter === 'disponiveis' ? 'disponíveis' : 'emprestados'} no momento.`}
-                                    </p>
-                                </div>
+                                <EmptyState filter={filter} />
                             )}
 
                             {!loading && !error && books.length > 0 && (
