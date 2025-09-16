@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { deleteBook, getAllBooks } from "../services/BookService.js";
+import { toast } from 'react-toastify';
 
 export function useBooks() {
     const [books, setBooks] = useState([]);
@@ -18,24 +19,34 @@ export function useBooks() {
         } catch (err) {
             console.error('Erro ao carregar livros:', err);
             setError('Erro ao carregar livros');
-            setBooks([]); 
+            setBooks([]);
         } finally {
             setLoading(false);
         }
     };
 
     const removeBook = async (id) => {
-        console.log('Tentando remover livro com ID:', id); 
+        const bookToRemove = books.find(book => book.code === id);
+        const confirmDelete = window.confirm(
+            `Tem certeza que deseja remover o livro "${bookToRemove?.title}"?`
+        );
+        if (!confirmDelete) return; 
         try {
+            const toastId = toast.loading('Removendo livro...');
             await deleteBook(id);
             setBooks(prevBooks => {
                 const newBooks = prevBooks.filter(book => book.code !== id);
-                console.log('Books após remoção:', newBooks);
+                toast.update(toastId, {
+                    render: `Livro "${bookToRemove?.title}" removido com sucesso!`,
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 3000
+                });
                 return newBooks;
             });
         } catch (err) {
             console.error('Erro ao excluir livro:', err);
-            setError('Erro ao excluir livro');
+            toast.error('Erro ao remover livro. Tente novamente.');
         }
     };
 

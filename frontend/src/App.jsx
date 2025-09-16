@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { BookOpen, Plus, Search, Filter, Ban, Check, Loader2, BookCopy, AlertCircle } from 'lucide-react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import BookForm from './components/BookForm';
 import BookSearch from './components/BookSearch';
 import StatsCard from './components/StatsCard';
@@ -19,6 +21,17 @@ function App() {
 
     return (
         <div className="container">
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <header className="header">
                 <div className="header-content">
                     <div className="header-logo_section">
@@ -122,7 +135,7 @@ function App() {
                                 <div className="books-grid">
                                     {books.map(book => (
                                         <BookCard
-                                            key={book.code}  
+                                            key={book.code}
                                             book={book}
                                             onDelete={removeBook}
                                         />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { saveBook } from "../services/BookService";
+import { toast } from 'react-toastify';
 
 export function useBookForm() {
     const [title, setTitle] = useState('');
@@ -36,11 +37,12 @@ export function useBookForm() {
         };
 
         try {
-            await saveBook(bookData);
+            const created = await saveBook(bookData);
+            toast.success(`Livro "${created?.title ?? bookData.title}" adicionado ao acervo!`);
             resetForm();
         } catch (error) {
             console.error('Erro ao salvar livro:', error);
-            setError('Erro ao salvar livro. Tente novamente.');
+            toast.error('Erro ao salvar livro. Tente novamente.');
         } finally {
             setLoading(false);
         }
